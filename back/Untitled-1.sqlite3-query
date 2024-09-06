@@ -1,0 +1,8 @@
+-- database: c:\Users\52662441860\Documents\Projeto API\2DS-MB-11\back\db.sqlite3
+
+SELECT * FROM api_filmes;
+
+UPDATE api_filmes
+SET genero = '';
+
+DELETE FROM api_filmes;
