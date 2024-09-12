@@ -35,6 +35,8 @@ export default function Home() {
             )
     }, [])
 
+    
+
     const capturar = async () => {
         try {
             const response = await axios.get(
@@ -46,7 +48,7 @@ export default function Home() {
             )
             console.log(response.data)
             setFilmeG(response.data.titulo)
-            setGeneroG(response.data.genero)
+            setGeneroG(response.data.genero.genero)
             setAnoG(response.data.ano)
             setClassifG(response.data.classif)
             setIdiomaG(response.data.idioma)

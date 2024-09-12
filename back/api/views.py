@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import Filmes
-from .serializer import FilmesSerializer
+from .models import Filmes, Genero
+from .serializer import FilmesSerializer, GeneroSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET', 'POST'])
@@ -28,5 +28,17 @@ class FilmesViews(ListCreateAPIView):
 
 class FilmesDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
+    queryset = Filmes.objects.all()
+    serializer_class = FilmesSerializer
+
+class GeneroViews(RetrieveUpdateDestroyAPIView):
+    queryset = Genero.objects.all()
+    serializer_class = GeneroSerializer
+    
+class FilmesListCreateView(generics.ListCreateAPIView):
+    queryset = Filmes.objects.all()
+    serializer_class = FilmesSerializer
+    
+class FilmesDetailView(generics.RetrieveAPIView):
     queryset = Filmes.objects.all()
     serializer_class = FilmesSerializer
